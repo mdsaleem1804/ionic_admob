@@ -32,6 +32,11 @@ export class HomePage {
      this.getCountries();
       //this.showInterstitialAd();
       platform.ready().then(() => {
+            // this.toast.show(`I'm a toast`, '5000', 'bottom').subscribe(
+    //   toast => {
+    //     console.log(toast);
+    //   }
+    // );
         //splashScreen.hide();
         platform.registerBackButtonAction(() => {
           if (this.alertShown==false) {
