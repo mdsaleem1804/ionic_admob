@@ -18,13 +18,11 @@
             <ion-card >
                 <ion-card-content>
                     <div>
-                        <img style="height:100px; width:200px; margin:auto; margin-top:5px" src="http://hellotamila.com/hellotamila_apps/tn_text_books/images/{{c.id}}.png"> 
+                        <img style="height:100px; width:200px; margin:auto; margin-top:5px" src="http://hellotamila.com/hellotamila_apps/tn_text_books/images/{{c.id}}.png"
+                        (click)="loadUrl(c.url)"> 
  
                         </div>
-                       <ion-icon  name="cloud-download" style="padding: 5px;" (click)="loadUrl(c.url)" >
-                        </ion-icon>
-                        <ion-icon  name="logo-whatsapp"  (click)="showBannerAd()" >
-                        </ion-icon>
+              
                 
                     
                 </ion-card-content>

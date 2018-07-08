@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,Platform } from 'ionic-angular';
 import { InAppBrowser,InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { AdMobFree, AdMobFreeBannerConfig,AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 import { RestProvider } from '../../providers/rest/rest';
+
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -19,13 +21,51 @@ export class HomePage {
   qrData = null;
   createdCode = null;
   scannedCode = null;
+  public alertShown:boolean = false;
   constructor(public navCtrl: NavController,
     private adMobFree: AdMobFree,
+    private platform :Platform,
     private iab: InAppBrowser,
-    public rest: RestProvider) {
+    public rest: RestProvider,
+    private alertCtrl: AlertController,) {
      this.showBannerAd();
      this.getCountries();
       //this.showInterstitialAd();
+      platform.ready().then(() => {
+        //splashScreen.hide();
+        platform.registerBackButtonAction(() => {
+          if (this.alertShown==false) {
+            this.presentConfirm();  
+          }
+        }, 0)
+      });
+  }
+  presentConfirm() {
+    let alert = this.alertCtrl.create({
+      title: 'Thanks For Using..',
+      message: 'Do you want Exit?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+            this.alertShown=false;
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Yes clicked');
+            // this.launchInterstitial();
+            this.platform.exitApp();
+          }
+        }
+      ]
+    });
+     alert.present().then(()=>{
+      this.alertShown=true;
+    });
   }
   async showBannerAd() {
     try {

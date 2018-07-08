@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { RestProvider } from '../providers/rest/rest';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { AlertController } from 'ionic-angular';
 @NgModule({
   declarations: [
     MyApp,
@@ -32,6 +33,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     AdMobFree,
     RestProvider,
     InAppBrowser,
+    AlertController,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
