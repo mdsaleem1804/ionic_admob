@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { InAppBrowser,InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { AdMobFree, AdMobFreeBannerConfig,AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 import { RestProvider } from '../../providers/rest/rest';
 
@@ -20,6 +21,7 @@ export class HomePage {
   scannedCode = null;
   constructor(public navCtrl: NavController,
     private adMobFree: AdMobFree,
+    private iab: InAppBrowser,
     public rest: RestProvider) {
      this.showBannerAd();
      this.getCountries();
@@ -66,12 +68,13 @@ getCountries() {
        countries => this.countries = countries,
        error =>  this.errorMessage = <any>error);
 } 
-// loadUrl(xUrl){
-//   const options :InAppBrowserOptions={
-//     zoom:'yes'
-//   }
-//    this.iab.create(xUrl,'_self',options);
-//   }
+loadUrl(xUrl){
+  const options :InAppBrowserOptions={
+    zoom:'yes'
+  }
+   this.iab.create(xUrl,'_self',options);
+  }
+
 
 
 }
