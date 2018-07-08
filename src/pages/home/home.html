@@ -1,14 +1,40 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content padding class="no-scroll">
+  <ion-img width="100%" height="15%" style="background: transparent 
+  !important;" src="assets/imgs/tn_logo.png"></ion-img>
+  <ion-grid text-right>
+      <ion-row >
+          <ion-col col-12  class="animated infinite tada">
+            <!-- <ion-searchbar [(ngModel)]="terms" full no-margin></ion-searchbar>!-->
+        
+<h3  style="text-align:center ; color: #1f9bcc;">You   on your  tomorrow.</h3>
+          </ion-col>
+          
+      </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+        <ion-col col-6 class="slide-in-both-ways" *ngFor="let c of countries">
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+            <ion-card >
+                <ion-card-content>
+                    <div>
+                        <img style="height:100px; width:200px; margin:auto; margin-top:5px" src="http://hellotamila.com/hellotamila_apps/tn_text_books/images/{{c.id}}.png"> 
+ 
+                        </div>
+                       <ion-icon  name="cloud-download" style="padding: 5px;" (click)="loadUrl(c.url)" >
+                        </ion-icon>
+                        <ion-icon  name="logo-whatsapp"  (click)="showBannerAd()" >
+                        </ion-icon>
+                
+                    
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+      
+    </ion-row>
+</ion-grid>
+
+    
+
+   
+

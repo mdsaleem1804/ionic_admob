@@ -1,16 +1,29 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig,AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
+import { RestProvider } from '../../providers/rest/rest';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  countries: any;
+  quotes :any;
+  errorMessage: string;
+  descending: boolean = false;
+  order: number;
+  column: string = 'name';
+  xWhatsAppUrl :string;
+  qrData = null;
+  createdCode = null;
+  scannedCode = null;
   constructor(public navCtrl: NavController,
-    private adMobFree: AdMobFree) {
-      this.showBannerAd();
-      this.showInterstitialAd();
+    private adMobFree: AdMobFree,
+    public rest: RestProvider) {
+     this.showBannerAd();
+     this.getCountries();
+      //this.showInterstitialAd();
   }
   async showBannerAd() {
     try {
@@ -47,5 +60,18 @@ async showInterstitialAd() {
     console.error(e)
   }
 }
+getCountries() {
+  this.rest.getCountries()
+     .subscribe(
+       countries => this.countries = countries,
+       error =>  this.errorMessage = <any>error);
+} 
+// loadUrl(xUrl){
+//   const options :InAppBrowserOptions={
+//     zoom:'yes'
+//   }
+//    this.iab.create(xUrl,'_self',options);
+//   }
+
 
 }
