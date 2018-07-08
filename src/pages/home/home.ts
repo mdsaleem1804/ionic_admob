@@ -30,7 +30,7 @@ export class HomePage {
     private alertCtrl: AlertController,) {
      this.showBannerAd();
      this.getCountries();
-      //this.showInterstitialAd();
+      
       platform.ready().then(() => {
             // this.toast.show(`I'm a toast`, '5000', 'bottom').subscribe(
     //   toast => {
@@ -56,13 +56,14 @@ export class HomePage {
           handler: () => {
             console.log('Cancel clicked');
             this.alertShown=false;
+            this.showInterstitialAd();
           }
         },
         {
           text: 'Yes',
           handler: () => {
             console.log('Yes clicked');
-            // this.launchInterstitial();
+            this.showInterstitialAd();
             this.platform.exitApp();
           }
         }
